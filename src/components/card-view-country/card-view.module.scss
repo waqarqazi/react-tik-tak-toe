@@ -1,0 +1,49 @@
+.attorneyDiv {
+  background-color: gray;
+  width: 90%;
+  padding: 0px 0px 10px 10px;
+  border-radius: 8px;
+  position: relative;
+
+  
+  .topDiv {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 120px;
+
+  }
+  .bottomText {
+    color: #FFFFFF;
+    font-family: 'Montserrat';
+    font-size: 10px;
+ 
+
+  }
+  .bottomRightImage {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    
+  }
+  .text {
+    color: #FFFFFF;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 10px;
+
+  }
+  .pvText {
+      font-family: 'Montserrat';
+      font-weight: bold;
+      font-size: 40px;
+      color: #FFFFFF;
+     // display: contents;
+      margin-left: 10px;
+     
+    }
+      
+  
+
+}

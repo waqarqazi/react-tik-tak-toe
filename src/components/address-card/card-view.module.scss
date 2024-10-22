@@ -1,0 +1,29 @@
+
+  .topDiv {
+    display: flex;
+    align-items: center;
+  }
+
+  .heading {
+    color: #45464E;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: -9px;
+   
+  }
+  .p1 {
+    color: #8B8D97;
+    font-family: 'Montserrat';
+    font-size: 14px;
+  }
+  .btnClassModalWithoutColor {
+    height: 40px !important;
+    width: 130px;
+    background-color: #fff;
+  }
+  .btnCancelText {
+    color: #2F80ED !important;
+    font-weight: 600;
+    font-size: 14px;
+  }
+

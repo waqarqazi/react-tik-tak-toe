@@ -1,0 +1,27 @@
+@import 'styles/_breakpoints.scss';
+@import 'styles/_colors.scss';
+@import 'styles/_mixin.scss';
+
+.mainDiv {
+  max-width: 380px !important;
+  display: block;
+  height: 300px;
+
+  .secondDiv{
+    
+    width: 100%;
+    .modalTitle {
+      font-weight: 600;
+      font-size: 16px;
+      color: #484A54;
+      border-bottom: 2px solid #DBDEEE;  
+    }
+    .text {
+      font-size: 12px;
+      color: #484A54;
+      text-align: center;
+    }
+   
+  }
+}
+

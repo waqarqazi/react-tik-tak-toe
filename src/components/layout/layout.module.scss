@@ -1,0 +1,77 @@
+@import 'styles/_breakpoints.scss';
+@import 'styles/_colors.scss';
+@import 'styles/_mixin.scss';
+
+.layoutWrapper {
+  width: 100%;
+  padding: 0px 0px 20px 0px;
+  background-color: #f8fffd;
+  min-height: calc(100vh - 74px);
+
+  @media (max-width: $xs) {
+    padding: 0px 0px 10px 0px;
+  }
+  .aside {
+    position: fixed;
+    width: 250px;
+    background: #ffffff;
+    box-shadow: 0px 4px 16px #f1f4f9;
+    border-radius: 4px;
+    z-index: 25000;
+    transition: all 0.3s;
+    height: calc(100vh - 74px);
+    @media (max-width: $md) {
+      width: auto !important;
+      box-shadow: none;
+    }
+  }
+  main {
+    padding-top: 32px;
+    @media (max-width: $md) {
+      margin-left: 20px !important;
+    }
+  }
+  .containerStyle {
+    @media (max-width: $sm) {
+      padding-left: 0;
+    }
+  }
+}
+
+.side {
+  position: fixed;
+  width: auto;
+  z-index: 25000;
+  transition: all 0.3s;
+}
+
+.showSmall {
+  display: none;
+  .innerSide {
+    position: relative;
+    z-index: 3500;
+    background: #ffffff;
+    box-shadow: 0px 4px 16px #f1f4f9;
+    border-radius: 4px;
+    transition: all 0.3s;
+    @media (max-width: $md) {
+      box-shadow: none !important;
+    }
+  }
+  @media (max-width: $md) {
+    display: block !important;
+  }
+}
+.backdropDiv {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+}
+
+.hiddenSmall {
+  display: block;
+  @media (max-width: $md) {
+    display: none;
+  }
+}

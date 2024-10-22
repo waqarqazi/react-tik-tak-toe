@@ -1,0 +1,186 @@
+@import 'styles/_mixin.scss';
+@import 'styles/_colors.scss';
+
+.textField2{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+align-items: center;
+}
+.listView{
+ overflow: scroll;
+ max-height: 100px;
+
+}
+
+.modalWrapper {
+  
+  .slider {
+    -webkit-appearance: none; /* Override default CSS styles */
+    appearance: none;
+    width: 75%; /* Full-width */
+    margin: 30px 0;
+    height: 15px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+    transition: opacity 0.2s;
+    border-radius: 50px;
+  }
+
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border-radius: 25px;
+
+    background: $btn; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: $btn; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  .modal {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 8px;
+    overflow-y: auto;
+    max-width: 451px;
+    height: fit-content;
+    overflow-y: auto;
+    background: white;
+    &::-webkit-scrollbar:vertical {
+      display: none;
+    }
+    .body {
+      padding: 30px;
+    }
+    .topText {
+      @include normal-tag;
+      color: #39695b;
+      margin: 20px 0px;
+    }
+    .uploadBtnDiv {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      .uploadBtn {
+        width: 200px;
+      }
+    }
+    
+  }
+}
+
+.editImgBox {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: #39695b;
+  img {
+    margin: 0 !important;
+  }
+}
+.box {
+  width: 300px; 
+  height: 300px;
+}
+.avatarWrapper {
+  position: relative;
+  width: fit-content;
+}
+.cropModal {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  min-width: 451px;
+  min-height: 481px;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 250000;
+  padding: 20px 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.uploadDiv {
+
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #DBDEEE;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+
+  .uploadText {
+    @include p-small;
+  }
+
+}
+
+.rowBtn{
+  padding: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .btnClassLined {
+    width: 100px;
+    border: 1px solid #2F80ED;
+    background-color: #ffffff !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+    span {
+      color: #2F80ED !important;
+    }
+  }
+}
+.textDetailsLibrary {
+  color:#8B8D97;
+  @include font16; 
+  padding: 10px 0px 10px 0px;
+  width: 100%;
+
+}
+.btnClass {
+  width: 170px;
+  border: 1px solid #484A54;
+  background-color: #ffffff !important;
+  margin-top: 0px;
+  margin-bottom: 0px;
+ 
+  span {
+    color: #484A54 !important;
+    font-size: 12px;
+  }
+}
+

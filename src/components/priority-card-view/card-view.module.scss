@@ -1,0 +1,93 @@
+.attorneyDiv {
+  background-color: white;
+  width: 100%;
+  max-height: 337px;
+  height: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+  
+  .topDiv {
+    display: flex;
+    align-items: center;
+ 
+  }
+  h1 {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 40px;
+    color: #45464E;
+  }
+  .text {
+    color: #45464E;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  .pval2{
+    width: 95%;
+    .pvText {
+      font-family: 'Montserrat';
+      font-weight: bold;
+      font-size: 16px;
+      color: #363636;
+    }
+      
+  }
+  .gridViewSecond{
+    width: '100%';
+    display: flex;
+    justify-content: space-between;
+flex-direction: row;
+align-items: center;
+  }
+
+  .gridSection {
+    margin-top: 2px;
+    display: flex;
+    justify-content: space-around;
+    .gridView {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      width: 100%;
+      padding: 2px;
+      margin-right: 10px;
+      max-height: 50px;
+    
+     // background-color: #f8fffd;
+      .p1 {
+        color: #8B8D97;
+        font-family: 'Montserrat';
+        font-size: 14px;
+        
+      }
+      .iconView {
+        display: flex;
+      }
+      .percentageText{
+        font-family: 'Montserrat';
+        font-weight: bold;
+        font-size: 16px;
+      
+      }
+      .p2 {
+        font-family: 'Montserrat';
+        font-weight: bold;
+        font-size: 16px;
+        color: #363636;
+      }
+    }
+  }
+  .lastDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+   
+    max-height: 50px;
+  }
+}

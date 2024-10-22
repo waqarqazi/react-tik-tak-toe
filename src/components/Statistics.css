@@ -1,0 +1,68 @@
+/* src/components/Statistics.css */
+.statistics {
+  margin-top: 30px;
+  text-align: center;
+  color: #2e3b4e;
+  font-family: "Arial", sans-serif;
+}
+
+.statistics h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2e3b4e;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.stat-item {
+  background-color: #ffffff;
+  border: 3px solid #2e3b4e;
+  border-radius: 10px;
+  padding: 20px;
+  width: 120px;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+.stat-value {
+  font-size: 3rem;
+  color: #1d72b8;
+  font-weight: bold;
+}
+
+.stat-label {
+  display: block;
+  font-size: 1.2rem;
+  color: #2e3b4e;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stat-item {
+    width: 100px;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+  }
+}

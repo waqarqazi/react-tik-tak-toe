@@ -1,0 +1,47 @@
+@import 'styles/_breakpoints.scss';
+@import 'styles/_colors.scss';
+@import 'styles/_mixin.scss';
+  .heading {
+    color: #45464E;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .detailDiv{
+   
+
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: space-between;
+    @media (max-width: $md) {
+      flex-direction: column; 
+    }
+    .titleDiv{
+      display:flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 20%;
+    }
+
+    .titleText{
+      font-size: 16px;
+      color: #8B8D97;
+      text-align: left;
+   
+    }
+    .colText{
+      font-size: 16px;
+      color: #8B8D97;
+      text-align: left;
+      
+    }
+    .titleDecText{
+   
+      font-size: 16px;
+      color: #484A54;
+      text-align: left;
+      width: 78%;
+    }
+  }
+  
+

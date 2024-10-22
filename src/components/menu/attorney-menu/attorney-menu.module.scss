@@ -1,0 +1,94 @@
+// @import '../../styles/breakpoints';
+@import 'styles/_colors.scss';
+@import 'styles/_mixin.scss';
+
+.wraper {
+  width: 100%;
+  background-color: #f6fafd;
+  position: sticky;
+  top: 0;
+  z-index: 9000;
+  .menuBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .menuSection {
+      display: flex;
+      align-items: center;
+
+      span {
+        @include header;
+        color: $neutral2;
+      }
+      .innerDiv {
+        display: flex;
+        align-items: center;
+        margin-left: 40px;
+        padding: 25px 0px;
+        border-bottom: 1px solid transparent;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        .menuSectionIcon {
+          margin-right: 12px;
+        }
+        @media (max-width: $md) {
+          display: none;
+        }
+      }
+      .activeClass {
+        border-bottom: 2px solid #6b38ad;
+      }
+    }
+    .menuIcon {
+      display: none;
+      @media (max-width: $md) {
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .settingDropDown {
+    display: flex;
+    position: absolute;
+    z-index: 300;
+    top: 76px;
+    right: 0px;
+    border-radius: 5px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    filter: drop-shadow(0px -1px 13px rgba(0, 0, 0, 0.1));
+    .innerEle {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #f6fafd;
+      padding: 17px 10px;
+      cursor: pointer;
+    }
+    .img1 {
+      height: 24px;
+      width: 24px;
+      margin-right: 10px;
+    }
+    .img2 {
+      height: 18px;
+      width: 18px;
+      margin-right: 16px;
+    }
+  }
+}
+
+.logoImg {
+  img {
+    margin-left: -10px;
+  }
+}
+
+.link {
+  text-decoration: none;
+}

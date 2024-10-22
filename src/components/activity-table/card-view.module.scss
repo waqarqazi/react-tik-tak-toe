@@ -1,0 +1,56 @@
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  width: "12%";
+  text-align: left;
+  padding: 8px;
+}
+td {
+  border: none;
+  padding: 8px;
+  text-align: left;
+  
+  
+}
+
+th {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sort-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.asc {
+  border-bottom: 6px solid #555;
+}
+
+.desc {
+  border-top: 6px solid #555;
+}
+.sort-icon {
+  display: inline-block;
+  margin-left: 4px; // Add some spacing between text and icon
+  
+}
+
+.asc::before {
+  content: '🔼';
+}
+
+.desc::before {
+  content: '🔽';
+}
