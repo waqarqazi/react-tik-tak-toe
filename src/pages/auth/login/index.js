@@ -98,16 +98,16 @@ const Login = () => {
               color: "#7f7f7f",
             }}
           >
-            Not able to Log in? Try{" "}
+            Don't have an account?{" "}
             <Link
               style={{
                 textDecoration: "none",
                 color: "#2F80ED",
                 fontWeight: "bold",
               }}
-              to="/forgot-password"
+              to="/signup"
             >
-              Forgot password?
+              Sign up here!
             </Link>
           </p>
         </div>

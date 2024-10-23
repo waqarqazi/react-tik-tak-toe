@@ -1,11 +1,11 @@
-@import 'styles/_breakpoints.scss';
-@import 'styles/_colors.scss';
-@import 'styles/_mixin.scss';
+@import "styles/_breakpoints.scss";
+@import "styles/_colors.scss";
+@import "styles/_mixin.scss";
 
 .mainDiv {
-  display:grid;
-  position:absolute;
-  right:2%;
+  display: grid;
+  position: absolute;
+  right: 2%;
   background-color: #ffffff;
   padding: 10px 40px 10px 40px;
   border-radius: 5%;
@@ -16,21 +16,21 @@
   // overflow: hidden;
   height: 90%;
   width: 30%;
-  margin-top: 2%; 
+  margin-top: 2%;
   @media (max-width: $xs) {
     width: 96%;
   }
   .logo {
-    width:180px;
+    width: 180px;
     height: 110px;
   }
 
   .leftInnerDiv {
-   height: 100%;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     background-color: #304059;
-   
+
     .eyeIcon {
       top: 15px;
       height: 20px;
@@ -50,7 +50,6 @@
       margin-top: 15px;
     }
 
-  
     h2 {
       font-weight: 500;
       font-size: 24px;
@@ -68,29 +67,26 @@
         color: #696f7a;
       }
     }
-
-
   }
 }
 .buttonDiv {
-
   width: 100%;
   .create {
     width: 100%;
     max-width: 100%;
     height: 48px;
     background-color: transparent;
-    border: 1px solid #2F80ED;
+    border: 1px solid #2f80ed;
     margin-top: 24px;
     span {
-      color: #2F80ED;
+      color: #2f80ed;
     }
   }
   .loginButton {
     width: 100%;
-  
+
     height: 48px;
-    background-color: #2F80ED;
+    background-color: #2f80ed;
   }
 }
 .loadingDiv {
@@ -113,13 +109,9 @@
 .rightInnerDiv {
   height: 100vh;
   width: 100%;
-  position:absolute;
+  position: absolute;
   img {
     height: 100%;
     width: 100%;
   }
- 
-}
-.textFieldWraper2{
-  margin-top: -20px;
 }

@@ -87,23 +87,17 @@ function Signup() {
           }}
         >
           <p style={{ color: "#ffff" }}>Welcome to,</p>
-          <h1 style={{ color: "#ffff" }}>USDT HEIST</h1>
-          <h3 style={{ color: "#ffff" }}>Stratigies Bot with Binance</h3>
+          <h1 style={{ color: "#ffff" }}>Welcome to Tik Tak Toe Games</h1>
+          <h3 style={{ color: "#ffff" }}>Where Strategy Meets Fun!</h3>
         </div>
       </div>
 
       <div className={style.mainDiv}>
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          {/* <img src={mainLogo} alt="" className={style.logo} /> */}
-        </div>
-        <div style={{ height: "10%" }}>
-          <h2 style={{}}>Create Account</h2>
-          <span style={{ color: "#505673" }}>
-            Please Enter your details to continue
-          </span>
-        </div>
+        <h2 style={{}}>Create Account</h2>
+        <span style={{ color: "#505673" }}>
+          Please Enter your details to continue
+        </span>
+
         <TextField
           label="First Name"
           className={style.field}
@@ -144,7 +138,6 @@ function Signup() {
           // placeholder="Password"
           register={register}
           errorMessage={errors?.password?.message}
-          wraperClass={style.textFieldWraper2}
           onClick={() => setPasswordVisible(!passwordVisible)}
           icon={passwordVisible ? eyeOpen : eyeClose}
           type={passwordVisible ? "text" : "password"}
@@ -158,7 +151,6 @@ function Signup() {
           // placeholder="Password"
           register={register}
           errorMessage={errors?.confirm_password?.message}
-          wraperClass={style.textFieldWraper2}
           onClick={() => setPasswordVisible(!passwordVisible)}
           icon={passwordVisible ? eyeOpen : eyeClose}
           type={passwordVisible ? "text" : "password"}

@@ -8,6 +8,7 @@ import {
 import { useSelector } from "react-redux"; // Import useSelector to access the Redux store
 import Home from "./pages/home/HomePage"; // Example component
 import Login from "./pages/auth/login"; // Adjust path as needed
+import Signup from "pages/auth/signup";
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // Get authentication state
@@ -17,13 +18,16 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={isAuthenticated ? <Home /> : <Navigate to="/login" />} // Redirect to login if not authenticated
+          element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
         />
         <Route
           path="/login"
-          element={isAuthenticated ? <Navigate to="/" /> : <Login />} // Redirect to home if authenticated
+          element={isAuthenticated ? <Navigate to="/" /> : <Login />}
         />
-        {/* Add other routes here */}
+        <Route
+          path="/signup"
+          element={isAuthenticated ? <Navigate to="/" /> : <Signup />}
+        />
       </Routes>
     </Router>
   );
