@@ -27,14 +27,6 @@ To get started with the project, follow these steps:
 2. **Install dependencies**
    - npm install
 
-3. **Create a `.env` file**
-   Create a `.env` file in the root of the project and add your backend API URL:
-   - REACT_APP_API_URL=http://your-backend-api-url.com
-
-4. **Start the development server**
-   - npm start
-
-   The app will run on http://localhost:3000.
 
 ## Usage
 - Users can register for a new account or log in with existing credentials.
@@ -43,14 +35,8 @@ To get started with the project, follow these steps:
 - Users can view their game statistics on the statistics screen.
 
 
-## Deployment
-The application is deployed on Vercel. You can access it [here](https://your-deployed-url.com).
-
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request.
 
 ## License
 This project is licensed under the MIT License.
 
-## Contact
-For any questions or feedback, feel free to reach out to me at [your-email@example.com].
+
