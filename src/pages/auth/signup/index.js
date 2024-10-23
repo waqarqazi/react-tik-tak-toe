@@ -24,6 +24,7 @@ import { jwtDecode } from "jwt-decode";
 
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { signup } from "store/authSlice";
 
 const deviceId = uuidv4();
 console.log("deviceId", deviceId);
@@ -42,40 +43,24 @@ function Signup() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const onSubmit = async (data) => {
+    const { firstName, lastName, email, password } = data;
+    const resultAction = await dispatch(
+      signup({ firstName, lastName, email, password })
+    );
 
-  // const onSubmit = async (data) => {
-  //   const { email, password, confirm_password, first_name, last_name } = data;
-
-  //   try {
-  //     if (password == confirm_password) {
-  //       const result = await authService.signup({
-  //         email: email,
-  //         firstName: first_name,
-  //         lastName: last_name,
-  //         password: password,
-  //       });
-  //       console.log("result?.data?.message", result?.data?.message);
-  //       console.log("result", result);
-  //       if (result?.status == 200) {
-  //         // const status = 'login';
-  //         dispatch(setAuthState(result?.data));
-  //         // navigate(`/otp-verification/${email}/${status}`);
-  //       }
-  //     }
-  //   } catch (err) {
-  //     console.log("err", err);
-
-  //     createNotification(
-  //       "error",
-  //       "Login Error",
-  //       "Some thing happening wrong",
-  //       3500
-  //     );
-  //   }
-  // };
-
+    if (signup.fulfilled.match(resultAction)) {
+      navigate("/");
+    } else {
+      createNotification({
+        title: "Error",
+        message: resultAction.error.message,
+        type: "error",
+      });
+    }
+  };
   return (
-    <form onSubmit={handleSubmit()}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.rightInnerDiv}>
         <img src={loginLogo} alt="" style={{ width: "100%", height: "100%" }} />
         <div
@@ -101,23 +86,23 @@ function Signup() {
         <TextField
           label="First Name"
           className={style.field}
-          name="first_name"
+          name="firstName"
           register={register}
           //   placeholder="User ID"
-          errorMessage={errors?.first_name?.message}
+          errorMessage={errors?.firstName?.message}
           //  icon={crossIcon}
-          onClick={() => reset({ first_name: "" })}
+          onClick={() => reset({ firstName: "" })}
           // iconClass={style.crossIcon}
         />
         <TextField
           label="Last Name"
           className={style.field}
-          name="last_name"
+          name="lastName"
           register={register}
           //   placeholder="User ID"
-          errorMessage={errors?.last_name?.message}
+          errorMessage={errors?.lastName?.message}
           //  icon={crossIcon}
-          onClick={() => reset({ last_name: "" })}
+          onClick={() => reset({ lastName: "" })}
           // iconClass={style.crossIcon}
         />
         <TextField
@@ -147,10 +132,10 @@ function Signup() {
         <TextField
           label="Confirm Password"
           className={style.field}
-          name="confirm_password"
+          name="confirmPassword"
           // placeholder="Password"
           register={register}
-          errorMessage={errors?.confirm_password?.message}
+          errorMessage={errors?.confirmPassword?.message}
           onClick={() => setPasswordVisible(!passwordVisible)}
           icon={passwordVisible ? eyeOpen : eyeClose}
           type={passwordVisible ? "text" : "password"}
@@ -194,14 +179,14 @@ export default Signup;
 
 const schema = yup
   .object({
-    first_name: yup.string().required("First Name Field is required "),
-    last_name: yup.string().required("Last Name Field is required "),
+    firstName: yup.string().required("First Name Field is required "),
+    lastName: yup.string().required("Last Name Field is required "),
     email: yup.string().required("Email Field is required "),
     password: yup
       .string()
       .required("Password is required ")
       .min(4, "Must be at least 4 characters"),
-    confirm_password: yup
+    confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required"),

@@ -21,7 +21,21 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }) => {
     const response = await client.post("/auth/login", { email, password });
-    return response; // Adjust according to your API response structure
+    return response.data; // Adjust according to your API response structure
+  }
+);
+
+// Define an async thunk for signup
+export const signup = createAsyncThunk(
+  "auth/register",
+  async ({ firstName, lastName, email, password }) => {
+    const response = await client.post("/auth/register", {
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+    return response.data; // Adjust according to your API response structure
   }
 );
 
@@ -52,6 +66,19 @@ const authSlice = createSlice({
         setTokenToLocalStorage(action.payload.token); // Store token in local storage
       })
       .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message; // Handle errors
+      })
+      .addCase(signup.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signup.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userToken = action.payload.token; // Assuming token is in the response
+        state.isAuthenticated = true; // Set authenticated to true
+        setTokenToLocalStorage(action.payload.token); // Store token in local storage
+      })
+      .addCase(signup.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message; // Handle errors
       });
