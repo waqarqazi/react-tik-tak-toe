@@ -1,25 +1,23 @@
-import store from "store/store";
 import axios from "axios";
+import { store } from "../store/store"; // Adjust according to your file structure
 
 const client = axios.create({
-  //baseURL: `${Config.BASE_URL}/api`,
-  baseURL: "http://192.168.1.23:3000/api",
+  baseURL: "https://dev.waqar.urduspeech.com/api", // API base URL
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
 });
 
+// Response handler
 const onSuccess = function (response) {
-  // Return the data from the response
-  return response.data;
+  return response.data; // Return the data from the response
 };
 
+// Error handler
 const onError = function (error) {
-  // Handle the error response
   if (error.response) {
-    // Request was made but server responded with something
-    // other than 2xx
+    // Handle server response errors
   }
   return Promise.reject({
     errMsg: !error?.response ? "Network Issue!" : error.response.data,
@@ -27,20 +25,18 @@ const onError = function (error) {
   });
 };
 
+// Add interceptors for response handling
 client.interceptors.response.use(onSuccess, onError);
 
+// Add interceptors for request handling
 client.interceptors.request.use(
   async (config) => {
-    const state = store.getState();
-    console.log("state", state);
-
-    const token = state.auth.userToken;
-    console.log("userTokenClient", token);
-
-    config.headers["x-auth-token"] = `${token}`;
-    config.headers.Authorization = "user";
-
-    return config;
+    const state = store.getState(); // Get the Redux state
+    const token = state.auth.userToken; // Retrieve the token from the state
+    if (token) {
+      config.headers["x-auth-token"] = `${token}`; // Add the token to headers
+    }
+    return config; // Return the updated config
   },
   (error) => Promise.reject(error)
 );

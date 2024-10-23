@@ -4,9 +4,7 @@ import client from "./client";
 export const startGameAPI = async () => {
   try {
     const response = await client.post("/action/start-game");
-    console.log("response", response);
-
-    return response;
+    return response.data; // Ensure you're returning the data property
   } catch (error) {
     console.error("Failed to start game:", error);
     throw error;
@@ -20,7 +18,7 @@ export const makeMoveAPI = async ({ row, col, player }) => {
       col,
       player,
     });
-    return response;
+    return response.data; // Ensure you're returning the data property
   } catch (error) {
     console.error("Failed to make move:", error);
     throw error;
@@ -30,7 +28,7 @@ export const makeMoveAPI = async ({ row, col, player }) => {
 export const getProfileAPI = async () => {
   try {
     const response = await client.get("/action/profile");
-    return response.user;
+    return response.data.user; // Ensure you're returning the user property
   } catch (error) {
     console.error("Failed to fetch profile:", error);
     throw error;

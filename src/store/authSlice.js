@@ -1,90 +1,62 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  login as loginService,
-  profileSignup as signupService,
-} from "../services/authService";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import client from "../services/client"; // Adjust the path according to your structure
 
-// Define initial state
-const initialState: AuthState = {
-  isLoggedIn: false,
-  userToken: null,
-  loading: false, // Add loading state
-  error: null, // Add error state
+// Function to get token from local storage
+const getTokenFromLocalStorage = () => {
+  return localStorage.getItem("userToken");
 };
 
-// Async thunk for signup
-export const signup = createAsyncThunk("auth/register", async (userData) => {
-  const response = await signupService(userData);
-  return response;
-});
+// Function to set token in local storage
+const setTokenToLocalStorage = (token) => {
+  localStorage.setItem("userToken", token);
+};
 
-// Async thunk for login
+// Function to remove token from local storage
+const removeTokenFromLocalStorage = () => {
+  localStorage.removeItem("userToken");
+};
+
+// Define an async thunk for login
 export const login = createAsyncThunk(
   "auth/login",
-  async (data: { email: string, password: string }) => {
-    const token = await loginService(data);
-    // Store the token in localStorage
-    localStorage.setItem("authToken", token);
-    return token;
+  async ({ email, password }) => {
+    const response = await client.post("/auth/login", { email, password });
+    return response.data; // Adjust according to your API response structure
   }
 );
 
-// Async thunk for logout
-export const logout = createAsyncThunk("auth/logout", async () => {
-  // Clear persisted auth data from localStorage
-  localStorage.removeItem("authToken");
-  return null; // No need for a response, returning null
-});
-
 const authSlice = createSlice({
   name: "auth",
-  initialState,
-  reducers: {},
+  initialState: {
+    userToken: getTokenFromLocalStorage() || null, // Initialize token from local storage
+    isAuthenticated: !!getTokenFromLocalStorage(), // Check if user is authenticated
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    logout: (state) => {
+      state.userToken = null;
+      state.isAuthenticated = false;
+      removeTokenFromLocalStorage(); // Remove token from local storage
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
-      .addCase(login.fulfilled, (state, action: PayloadAction<string>) => {
-        state.isLoggedIn = true;
-        state.userToken = action.payload;
+      .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
+        state.userToken = action.payload.token; // Assuming token is in the response
+        state.isAuthenticated = true; // Set authenticated to true
+        setTokenToLocalStorage(action.payload.token); // Store token in local storage
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || "Failed to login";
-      })
-
-      .addCase(signup.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(signup.fulfilled, (state, action: PayloadAction<string>) => {
-        state.isLoggedIn = true;
-        state.userToken = action.payload;
-        state.loading = false;
-      })
-      .addCase(signup.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "Failed to signup";
-      })
-
-      .addCase(logout.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(logout.fulfilled, (state) => {
-        state.isLoggedIn = false;
-        state.userToken = null;
-        state.loading = false;
-      })
-      .addCase(logout.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "Failed to logout";
+        state.error = action.error.message; // Handle errors
       });
   },
 });
 
-// Export reducer
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;
