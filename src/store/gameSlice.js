@@ -133,13 +133,15 @@ const gameSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getProfile.fulfilled, (state, action) => {
+        console.log("action", action);
+
         state.status = "succeeded";
-        state.wins = action.payload.wins;
-        state.loses = action.payload.loses;
-        state.draws = action.payload.draws;
-        state.email = action.payload.email;
-        state.firstName = action.payload.firstName;
-        state.lastName = action.payload.lastName;
+        state.wins = action.payload?.user?.wins;
+        state.loses = action.payload?.user?.loses;
+        state.draws = action.payload?.user?.draws;
+        state.email = action.payload?.user?.email;
+        state.firstName = action.payload?.user?.firstName;
+        state.lastName = action.payload?.user?.lastName;
       })
       .addCase(getProfile.rejected, (state, action) => {
         state.status = "failed";
