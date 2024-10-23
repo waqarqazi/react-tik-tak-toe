@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { startGame, makeMove, getProfile } from "../../store/gameSlice"; // Import the game slice actions
 import { logout } from "../../store/authSlice";
 import Board from "./Board";
-
+import Button from "components/button";
+import loginLogo from "assets/icons/auth.png";
 const GameScreen = () => {
   const dispatch = useDispatch();
   const {
@@ -23,12 +24,21 @@ const GameScreen = () => {
     dispatch(startGame());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (winner) {
+      alert(`Player ${winner === "X" ? firstName : "Computer"} wins!`);
+      dispatch(startGame());
+      dispatch(getProfile());
+    }
+  }, [winner, dispatch]);
+
   const handleMove = (row, col) => {
     if (board[row][col] !== "") {
       alert("Invalid Move, cell already occupied.");
       return;
     }
     dispatch(makeMove({ row, col, player: currentPlayer }));
+    
   };
 
   const handleLogout = () => {
@@ -38,16 +48,15 @@ const GameScreen = () => {
   return (
     <div style={styles.container}>
       <h1>Tic Tac Toe</h1>
-
       <p>
-        Player: {firstName} {lastName} ({email})
+        Player: {firstName} {lastName} ({email}) 
       </p>
 
       <Board board={board} onCellPress={handleMove} />
 
       <div style={styles.buttonContainer}>
-        <button onClick={() => dispatch(startGame())}>Restart Game</button>
-        <button onClick={handleLogout}>Logout</button>
+        <Button text={"Restart"} handleClick={() => dispatch(startGame())}/>
+        <Button text={"Logout"} handleClick={handleLogout}/>
       </div>
 
       <div style={styles.statsContainer}>
@@ -73,6 +82,10 @@ const styles = {
     textAlign: "center",
   },
   buttonContainer: {
+    display: "flex", // Use flexbox for layout
+    justifyContent: "center", // Center horizontally
+    alignItems: "center", // Center vertically (optional, if needed)
+    gap: "10px", // Add some space between buttons
     margin: "20px 0",
   },
   statsContainer: {

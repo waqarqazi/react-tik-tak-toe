@@ -21,7 +21,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }) => {
     const response = await client.post("/auth/login", { email, password });
-    return response.data; // Adjust according to your API response structure
+    return response; 
   }
 );
 
@@ -35,7 +35,7 @@ export const signup = createAsyncThunk(
       email,
       password,
     });
-    return response.data; // Adjust according to your API response structure
+    return response.data; 
   }
 );
 

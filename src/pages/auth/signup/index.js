@@ -5,36 +5,24 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
-
 import { createNotification } from "components/react-notification";
 import TextField from "components/textfield";
 import Button from "components/button";
-
-//import { userService } from "services/users";
-
 import loginLogo from "assets/icons/auth.png";
-// import mainLogo from 'assets/icons/app-logo.png';
-// import crossIcon from 'assets/icons/cross-gray.svg';
 import eyeOpen from "assets/icons/Hide.svg";
 import eyeClose from "assets/icons/Show.svg";
-
 import style from "./signup.module.scss";
-
-import { jwtDecode } from "jwt-decode";
-
 import { useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 import { signup } from "store/authSlice";
 
-const deviceId = uuidv4();
-console.log("deviceId", deviceId);
+
 
 function Signup() {
   const roleState = useSelector((state) => state?.appState?.roleState);
   const dispatch = useDispatch();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
-  console.log("roleState", roleState);
+  
   const {
     register,
     handleSubmit,

@@ -11,6 +11,7 @@ import eyeOpen from "assets/icons/Hide.svg";
 import eyeClose from "assets/icons/Show.svg";
 import Button from "components/button";
 import style from "./login.module.scss";
+import { createNotification } from "components/react-notification";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,13 +27,12 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const { email, password } = data;
-      const resultAction = await dispatch(login({ email, password })).unwrap(); // Call the login action
-      // if (resultAction) {
-      //   navigate("/"); // Redirect to the home page after successful login
-      // }
+      const resultAction = await dispatch(login({ email, password })).unwrap();
+      if (resultAction) {
+        navigate("/");
+      }
     } catch (error) {
-      console.error("Login failed:", error);
-      // Handle error (e.g., show a message)
+      alert("Wrong Email or Password")
     }
   };
 
@@ -72,17 +72,13 @@ const Login = () => {
           className={style.field}
           name="email"
           register={register}
-          //   placeholder="User ID"
           errorMessage={errors?.email?.message}
-          //  icon={crossIcon}
           onClick={() => reset({ email: "" })}
-          // iconClass={style.crossIcon}
         />
         <TextField
           label="Password"
           className={style.field}
           name="password"
-          // placeholder="Password"
           register={register}
           errorMessage={errors?.password?.message}
           wraperClass={style.textFieldWraper2}
