@@ -21,7 +21,7 @@ This is a Tic-Tac-Toe web application built using React. Users can log in, choos
 To get started with the project, follow these steps:
 
 1. **Clone the repository**
-   - git clone https://github.com/your-username/tic-tac-toe-react.git
+   - git clone https://github.com/waqarqazi/react-tik-tak-toe.git
    - cd tic-tac-toe-react
 
 2. **Install dependencies**
