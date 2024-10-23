@@ -3,7 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App";
-import { store } from "./redux/store";
+import store, { persistor } from "./store/store";
+import { PersistGate } from "redux-persist/integration/react";
 import reportWebVitals from "./reportWebVitals";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
@@ -11,9 +12,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      {<NotificationContainer />}
-      <CssBaseline />
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        {<NotificationContainer />}
+        <CssBaseline />
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

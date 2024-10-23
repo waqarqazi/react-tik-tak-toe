@@ -1,4 +1,3 @@
-// src/components/TicTacToe.js
 import { useState } from "react";
 import "./TicTacToe.css";
 
@@ -6,7 +5,7 @@ function TicTacToe({ onGameEnd }) {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
 
-  const handleClick = (index) => {
+  const handleClick = (index: number) => {
     const newBoard = [...board];
     if (newBoard[index] || calculateWinner(newBoard)) return;
 
@@ -22,7 +21,7 @@ function TicTacToe({ onGameEnd }) {
     }
   };
 
-  const calculateWinner = (board) => {
+  const calculateWinner = (board: string[]) => {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],

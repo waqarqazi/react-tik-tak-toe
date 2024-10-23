@@ -1,27 +1,26 @@
-// src/components/Statistics.js
-import React from "react";
-import "./Statistics.css";
+interface StatisticsProps {
+  wins: number;
+  losses: number;
+  draws: number;
+}
 
-function Statistics({ wins, losses, draws }) {
+const Statistics = ({ wins, losses, draws }: StatisticsProps) => {
   return (
     <div className="statistics">
-      <h2>Player Statistics</h2>
-      <div className="stats-grid">
-        <div className="stat-item">
-          <span className="stat-value">{wins}</span>
-          <span className="stat-label">Wins</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-value">{losses}</span>
-          <span className="stat-label">Losses</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-value">{draws}</span>
-          <span className="stat-label">Draws</span>
-        </div>
+      <div className="stat-card">
+        <h3>Wins</h3>
+        <p>{wins}</p>
+      </div>
+      <div className="stat-card">
+        <h3>Losses</h3>
+        <p>{losses}</p>
+      </div>
+      <div className="stat-card">
+        <h3>Draws</h3>
+        <p>{draws}</p>
       </div>
     </div>
   );
-}
+};
 
 export default Statistics;

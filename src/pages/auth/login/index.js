@@ -10,7 +10,6 @@ import { createNotification } from "components/react-notification";
 import TextField from "components/textfield";
 import Button from "components/button";
 
-import { setUserReduxLogin } from "redux/auth/auth-actions";
 //import { userService } from "services/users";
 
 import loginLogo from "assets/icons/auth.png";
@@ -20,22 +19,17 @@ import eyeOpen from "assets/icons/Hide.svg";
 import eyeClose from "assets/icons/Show.svg";
 
 import style from "./login.module.scss";
-import { authService } from "services/auth-services";
-import { setAuthState } from "redux/features/appStateSlice";
-import { jwtDecode } from "jwt-decode";
 
-import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { login } from "store/authSlice";
 
 const deviceId = uuidv4();
-console.log("deviceId", deviceId);
 
 function Login() {
-  const roleState = useSelector((state) => state?.appState?.roleState);
   const dispatch = useDispatch();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
-  console.log("roleState", roleState);
+
   const {
     register,
     handleSubmit,
@@ -47,29 +41,25 @@ function Login() {
 
   const onSubmit = async (data) => {
     const { email, password } = data;
-
-    try {
-      const result = await authService.login({
+    dispatch(
+      login({
         email: email,
         password: password,
+      })
+    )
+      .unwrap()
+      .then(async (data) => {
+        console.log("data", data);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        createNotification(
+          "error",
+          "Login Error",
+          "Wrong Email or Password",
+          3500
+        );
       });
-
-      if (result?.data?.message == "Auth Successful") {
-        console.log("result", result);
-        // const status = 'login';
-        dispatch(setAuthState(result?.data?.token));
-        // navigate(`/otp-verification/${email}/${status}`);
-      }
-    } catch (err) {
-      console.log("err", err);
-
-      createNotification(
-        "error",
-        "Login Error",
-        "Some thing happening wrong",
-        3500
-      );
-    }
   };
 
   return (
@@ -165,7 +155,7 @@ export default Login;
 
 const schema = yup
   .object({
-    email: yup.string().required("User Id is required "),
+    email: yup.string().required("Email is required ").email(),
     password: yup
       .string()
       .required("Password is required ")

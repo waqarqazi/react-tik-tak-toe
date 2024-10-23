@@ -10,7 +10,6 @@ import { createNotification } from "components/react-notification";
 import TextField from "components/textfield";
 import Button from "components/button";
 
-import { setUserReduxLogin } from "redux/auth/auth-actions";
 //import { userService } from "services/users";
 
 import loginLogo from "assets/icons/auth.png";
@@ -20,8 +19,7 @@ import eyeOpen from "assets/icons/Hide.svg";
 import eyeClose from "assets/icons/Show.svg";
 
 import style from "./signup.module.scss";
-import { authService } from "services/auth-services";
-import { setAuthState } from "redux/features/appStateSlice";
+
 import { jwtDecode } from "jwt-decode";
 
 import { useSelector } from "react-redux";
@@ -45,39 +43,39 @@ function Signup() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
-    const { email, password, confirm_password, first_name, last_name } = data;
+  // const onSubmit = async (data) => {
+  //   const { email, password, confirm_password, first_name, last_name } = data;
 
-    try {
-      if (password == confirm_password) {
-        const result = await authService.signup({
-          email: email,
-          firstName: first_name,
-          lastName: last_name,
-          password: password,
-        });
-        console.log("result?.data?.message", result?.data?.message);
-        console.log("result", result);
-        if (result?.status == 200) {
-          // const status = 'login';
-          dispatch(setAuthState(result?.data));
-          // navigate(`/otp-verification/${email}/${status}`);
-        }
-      }
-    } catch (err) {
-      console.log("err", err);
+  //   try {
+  //     if (password == confirm_password) {
+  //       const result = await authService.signup({
+  //         email: email,
+  //         firstName: first_name,
+  //         lastName: last_name,
+  //         password: password,
+  //       });
+  //       console.log("result?.data?.message", result?.data?.message);
+  //       console.log("result", result);
+  //       if (result?.status == 200) {
+  //         // const status = 'login';
+  //         dispatch(setAuthState(result?.data));
+  //         // navigate(`/otp-verification/${email}/${status}`);
+  //       }
+  //     }
+  //   } catch (err) {
+  //     console.log("err", err);
 
-      createNotification(
-        "error",
-        "Login Error",
-        "Some thing happening wrong",
-        3500
-      );
-    }
-  };
+  //     createNotification(
+  //       "error",
+  //       "Login Error",
+  //       "Some thing happening wrong",
+  //       3500
+  //     );
+  //   }
+  // };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit()}>
       <div className={style.rightInnerDiv}>
         <img src={loginLogo} alt="" style={{ width: "100%", height: "100%" }} />
         <div
